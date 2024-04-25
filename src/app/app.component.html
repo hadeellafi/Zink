@@ -1,24 +1,25 @@
-
-
 <main class="main">
   <div class="content">
     <h1>The dome</h1>
 
     <!--  TASK:01: add style for navigation to make them appear on the same line -->
-    <nav> 
+    <nav>
       <ul>
         <!-- TASK:01: link to /bits and /pieces-->
-        <li><a>Bits</a></li>
-        <li><a>Pieces</a></li>
+        <li><a routerLink="/">Home</a></li>
+        <li><a routerLink="/bits">Bits</a></li>
+        <li><a routerLink="/pieces">Pieces</a></li>
       </ul>
     </nav>
 
     <!-- TASK:01 add a message here, if time is < 12:00 show Good morning, else show Good afternoon. Make it green with first message, red with second message-->
-    <div>Good morning</div>
-    
+
+    <p [ngStyle]="{'color': isMorning ? 'green' : 'red'}">
+      {{ isMorning ? 'Good morning' : 'Good afternoon' }}
+    </p>
+
   </div>
 </main>
-
 
 
 <router-outlet />
