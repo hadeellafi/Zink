@@ -22,4 +22,3 @@ const routes: Routes = [
 ];
 
 export const AppRoutingProvider = [provideRouter(routes)];
-//
