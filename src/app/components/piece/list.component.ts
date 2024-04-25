@@ -1,9 +1,22 @@
-import { Component } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { RouterModule } from "@angular/router";
 
 @Component({
-    selector:"dm-piece-list",
-    standalone: true,
-    imports: [],
     templateUrl: './list.component.html'
-})
-export class PieceListComponent{}
+    , changeDetection: ChangeDetectionStrategy.OnPush
+    , standalone: true
+    , imports: [CommonModule, RouterModule]
+    })
+export class PieceListComponent implements OnInit {
+
+ // TASK:02 get list of pieces from a service. let the service return static json
+ // Bind the list to the returned result
+ // Every item in the list should have a link to the details page
+   constructor() {
+       //
+   }
+   ngOnInit(): void {
+       //
+   }
+}

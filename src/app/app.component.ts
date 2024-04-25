@@ -9,6 +9,7 @@ import { CommonModule, DatePipe } from '@angular/common';
   imports: [RouterModule,CommonModule],
   templateUrl: './app.component.html'
 })
+  // TASK:02 create a child common component that displays the greeting message
 export class AppComponent implements OnInit {
   currentTime!: Date;
   isMorning!: boolean;
