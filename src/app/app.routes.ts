@@ -12,7 +12,6 @@ const routes: Routes = [
             (m) => m.BitListComponent
         )
     },
-
     {
         title:'Pieces',
         path: 'pieces',
@@ -23,3 +22,4 @@ const routes: Routes = [
 ];
 
 export const AppRoutingProvider = [provideRouter(routes)];
+//
