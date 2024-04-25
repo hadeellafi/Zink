@@ -1,24 +1,17 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CommonModule, DatePipe } from '@angular/common';
+import { MessageComponent } from './components/common/greetingMsg.partial';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule,CommonModule],
+  imports: [RouterModule,MessageComponent],
   templateUrl: './app.component.html'
 })
   // TASK:02 create a child common component that displays the greeting message
-export class AppComponent implements OnInit {
-  currentTime!: Date;
-  isMorning!: boolean;
-  ngOnInit(): void {
-    this.currentTime = new Date();
-    this.isMorning = this.currentTime.getHours() < 12
-
-  }
-  
+export class AppComponent {
 }
 
 

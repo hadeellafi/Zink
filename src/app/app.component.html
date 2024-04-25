@@ -11,14 +11,13 @@
         <li><a routerLink="/">Home</a></li>
         <li><a routerLink="/bits">Bits</a></li>
         <li><a routerLink="/pieces">Pieces</a></li>
+        <li><a routerLink="">Account profile</a></li>
+
       </ul>
     </nav>
 
     <!-- TASK:01 add a message here, if time is < 12:00 show Good morning, else show Good afternoon. Make it green with first message, red with second message-->
-
-    <p *ngIf="isMorning; else elseBlock" class="greenMsg">Good morning</p>
-    <ng-template  #elseBlock><p class="redMsg">Good afternoon</p></ng-template>
-    
+    <greetingMsg></greetingMsg>
   </div>
 </main>
 

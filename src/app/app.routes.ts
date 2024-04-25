@@ -6,7 +6,7 @@ import { Routes, provideRouter } from '@angular/router';
  //
 const routes: Routes = [
 
-    {
+    {  title:'Bits',
         path: 'bits',
         loadComponent: () => import('./components/bit/list.component').then(
             (m) => m.BitListComponent
@@ -14,6 +14,7 @@ const routes: Routes = [
     },
 
     {
+        title:'Pieces',
         path: 'pieces',
         loadComponent: () => import('./components/piece/list.component').then
             ((m) => m.PieceListComponent)
