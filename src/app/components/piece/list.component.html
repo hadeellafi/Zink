@@ -1,8 +1,10 @@
 
 <div class="page">
     <div class="container">
-      <ul *ngFor="let item of [0,1,2,3]">
-        <li>Piece</li>
+      <ul *ngFor="let piece of this.pieces">
+        <li><a [routerLink]="[piece.id]">{{piece.id}}</a></li>
+        <li>{{piece.name}}</li>
       </ul>
     </div>
 </div>
+<router-outlet></router-outlet>

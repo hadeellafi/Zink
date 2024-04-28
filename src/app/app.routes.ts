@@ -8,15 +8,15 @@ const routes: Routes = [
 
     {  title:'Bits',
         path: 'bits',
-        loadComponent: () => import('./components/bit/list.component').then(
-            (m) => m.BitListComponent
+        loadChildren: () => import('./routes/bit.route').then(
+            (m) => m.BitRoutes
         )
     },
     {
         title:'Pieces',
         path: 'pieces',
-        loadComponent: () => import('./components/piece/list.component').then
-            ((m) => m.PieceListComponent)
+        loadChildren: () => import('./routes/piece.route').then
+            ((m) => m.PieceRoutes)
     },
 
 ];

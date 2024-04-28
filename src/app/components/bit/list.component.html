@@ -2,8 +2,9 @@
 <div class="page">
     <div class="container">
         <ul *ngFor="let bit of bits">
-          <li>{{bit.id}}</li>
+          <li ><a [routerLink]="[bit.id]">{{bit.id}}</a></li>
           <li>{{bit.name}}</li>
         </ul>
     </div>
 </div>
+<router-outlet></router-outlet>
