@@ -2,16 +2,18 @@
   <div class="container">
     <!-- use an if to assign to local variable to be used later. and to make sure it binds when available -->
     @if (bits$ | async; as bits) {
-    <ul >
+    <ul>
       @for(bit of bits;track $index)
       {
       <li>
         <!-- TASK:03: turn this into a card partial component. with bit as input  -->
 
-        <a [routerLink]="['/bits/', bit.id]">{{bit.name}}</a>
+        <!-- <a [routerLink]="['/bits/', bit.id]">{{bit.name}}</a> -->
+
+        <dm-bit-card [bit]="bit"></dm-bit-card>
       </li>
+      }
+    </ul>
     }
-    </ul>}
   </div>
 </div>
-

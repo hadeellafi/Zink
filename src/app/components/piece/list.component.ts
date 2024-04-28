@@ -22,6 +22,6 @@ export class PieceListComponent implements OnInit {
        //
    }
    ngOnInit(): void {
-       this.pieces$=this.pieceService.getPieces();
+       this.pieces$=this.pieceService.GetPieces();
    }
 }

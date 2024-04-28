@@ -13,7 +13,10 @@ const tempBits = [
 export class BitService {
 
 
-  getBits(): Observable<IBit[]> {
+  GetBits(): Observable<IBit[]> {
     return of(tempBits);
+  }
+  GetBit(id:string):Observable<IBit>{
+    return of(tempBits.find(n=>n.id===id))
   }
 }
