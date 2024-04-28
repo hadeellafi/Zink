@@ -7,7 +7,6 @@ export const PieceRoutes: Routes = [
   // TASK:02: add a route for piece details. The route refers to a details component that shows dummy data
   {
     path: '',
-    pathMatch: 'full',
     component: PieceListComponent
   }
   ,

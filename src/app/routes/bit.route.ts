@@ -7,7 +7,6 @@ export const BitRoutes: Routes = [
   // TASK:02: add a route for bit details. The route refers to a details component that shows dummy data
   {
     path: '',
-    pathMatch: 'full',
     component: BitListComponent
   },
   {

@@ -1,7 +1,6 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MessageComponent } from './components/common/greetingMsg.partial';
+import { MessageComponent } from './components/common/greeting.partial';
 
 
 @Component({

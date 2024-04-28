@@ -1,10 +1,8 @@
-
 <div class="page">
-    <div class="container">
-      <ul *ngFor="let piece of this.pieces">
-        <li><a [routerLink]="[piece.id]">{{piece.id}}</a></li>
-        <li>{{piece.name}}</li>
-      </ul>
-    </div>
+  <div class="container">
+    <ul *ngFor="let piece of this.pieces">
+      <li><a [routerLink]="['/pieces/', piece.id]">{{piece.id}}</a></li>
+      <li>{{piece.name}}</li>
+    </ul>
+  </div>
 </div>
-<router-outlet></router-outlet>
