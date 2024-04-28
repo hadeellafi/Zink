@@ -7,7 +7,7 @@ interface IGreeting {
 }
 
 @Component({
-  selector: 'greetingMsg',
+  selector: 'dm-greeting',
   templateUrl: './greeting.partial.html',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,

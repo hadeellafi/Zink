@@ -1,7 +1,17 @@
 <div class="page">
   <div class="container">
-    <ul *ngFor="let bit of bits">
-      <li><a [routerLink]="['/bits/', bit.id]">{{bit.name}}</a></li>
-    </ul>
+    <!-- use an if to assign to local variable to be used later. and to make sure it binds when available -->
+    @if (bits$ | async; as bits) {
+    <ul >
+      @for(bit of bits;track $index)
+      {
+      <li>
+        <!-- TASK:03: turn this into a card partial component. with bit as input  -->
+
+        <a [routerLink]="['/bits/', bit.id]">{{bit.name}}</a>
+      </li>
+    }
+    </ul>}
   </div>
 </div>
+

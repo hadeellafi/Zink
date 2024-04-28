@@ -1,8 +1,13 @@
 <div class="page">
   <div class="container">
-    <ul *ngFor="let piece of this.pieces">
-      <li><a [routerLink]="['/pieces/', piece.id]">{{piece.id}}</a></li>
-      <li>{{piece.name}}</li>
+    @if(pieces$|async ;as pieces)
+    {
+    <ul>
+      @for(piece of pieces;track $index)
+      {
+      <li><a [routerLink]="['/pieces/', piece.id]">{{piece.name}}</a></li>
+      }
     </ul>
+    }
   </div>
 </div>
