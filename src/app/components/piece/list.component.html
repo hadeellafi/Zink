@@ -5,7 +5,9 @@
     <ul>
       @for(piece of pieces;track $index)
       {
-      <li><a [routerLink]="['/pieces/', piece.id]">{{piece.name}}</a></li>
+
+      <!-- TASK:03: turn this into a card partial component. with piece as input  -->
+      <dm-piece-card [piece]="piece"></dm-piece-card>
       }
     </ul>
     }

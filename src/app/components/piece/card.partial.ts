@@ -1,15 +1,15 @@
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
-import { IBit } from "../../models/bit.model";
+import { IPiece } from "../../models/piece.model";
 import { RouterModule } from "@angular/router";
 
 @Component({
+    selector: "dm-piece-card",
     templateUrl: "./card.partial.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
-    selector: "dm-bit-card",
     standalone: true,
     imports: [RouterModule]
 })
-export class BitCardComponent {
-    @Input() bit: IBit;
+export class PieceCardComponent {
+    @Input() piece: IPiece;
 
 }

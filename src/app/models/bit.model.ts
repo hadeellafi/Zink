@@ -1,5 +1,8 @@
+import { INgredient } from "./ingredients.model";
+
 export interface IBit {
     id: string;
     name: string;
-    ingredients?:string[]
+    taste?: string
+    ingredients?: INgredient[]
 }

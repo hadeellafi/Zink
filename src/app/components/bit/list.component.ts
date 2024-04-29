@@ -10,20 +10,20 @@ import { BitCardComponent } from './card.partial';
   templateUrl: './list.component.html'
   , changeDetection: ChangeDetectionStrategy.OnPush
   , standalone: true
-  , imports: [CommonModule, RouterModule,RouterLink,BitCardComponent]
+  , imports: [CommonModule, RouterModule, RouterLink, BitCardComponent]
 })
 export class BitListComponent implements OnInit {
 
   // TASK:02 get list of bits from a service. let the service return static json
   // Bind the list to the returned result
   // Every item in the list should have a link to the details page
-  
-   bits$:Observable<IBit[]>;
-  constructor(private bitService:BitService) {
+
+  bits$: Observable<IBit[]>;
+  constructor(private bitService: BitService) {
     //
   }
   ngOnInit(): void {
-    this.bits$=this.bitService.GetBits();
+    this.bits$ = this.bitService.GetBits();
   }
 }
 

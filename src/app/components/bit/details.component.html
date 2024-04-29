@@ -1,3 +1,16 @@
-<h3>bit details work</h3>
-<!-- TASK:03: display list of bit ingredients (bit.ingredients is an array of name, id, and quantity),
- when clicking on one, display the details in a child component here (name it details.partial) -->
+<div class="page">
+    <div class="container">
+        @if(bit$ | async;as bit) {
+
+        <!-- TASK:03: display list of bit ingredients (bit.ingredients is an array of name, id, and quantity),
+        when clicking on one, display the details in a child component here (name it details.partial) -->
+        <ul>
+            <li *ngFor="let ingredient of bit.ingredients;" (click)="DisplayDetails(ingredient)">
+                {{ ingredient.name }}
+            </li>
+        </ul>
+        }
+
+    </div>
+    <dm-detail-partial *ngIf="selectedIngredient" [ingredient]="selectedIngredient"></dm-detail-partial>
+</div>

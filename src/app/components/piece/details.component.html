@@ -1,5 +1,18 @@
-<p>piece details work</p>
+<div class="page">
+       <div class="container">
+              <!-- wait till piece is available -->
+              @if(piece$ | async; as piece) {
 
- <!-- TASK:03: display list of piece segment (piece.segments is an array of name, id, from, to)
-        when clicking on one, display the details in a child component here (name it details.partial) -->
-  
+              <!-- TASK:03: display list of piece segment (piece.segments is an array of name, id, from, to)
+           when clicking on one, display the details in a child component here (name it details.partial) -->
+
+              <ul>
+                     <li *ngFor="let segment of piece.segments;" (click)="DisplayDetails(segment)">
+                            {{ segment.name }}
+                     </li>
+              </ul>
+              }
+
+       </div>
+       <dm-detail-partial *ngIf="selectedSegment" [segment]="selectedSegment"></dm-detail-partial>
+</div>
