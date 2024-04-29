@@ -5,7 +5,7 @@
         <!-- TASK:03: display list of bit ingredients (bit.ingredients is an array of name, id, and quantity),
         when clicking on one, display the details in a child component here (name it details.partial) -->
         <ul>
-            <li *ngFor="let ingredient of bit.ingredients;" (click)="DisplayDetails(ingredient)">
+            <li *ngFor="let ingredient of bit.ingredients;" (click)="DisplayDetails(ingredient)" class="pointer">
                 {{ ingredient.name }}
             </li>
         </ul>

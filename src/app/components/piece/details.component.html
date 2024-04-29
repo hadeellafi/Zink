@@ -7,7 +7,7 @@
            when clicking on one, display the details in a child component here (name it details.partial) -->
 
               <ul>
-                     <li *ngFor="let segment of piece.segments;" (click)="DisplayDetails(segment)">
+                     <li *ngFor="let segment of piece.segments;" (click)="DisplayDetails(segment)" class="pointer">
                             {{ segment.name }}
                      </li>
               </ul>

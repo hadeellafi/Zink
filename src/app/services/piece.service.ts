@@ -25,6 +25,7 @@ const piece = {
 export class PieceService {
 
     GetPieces(): Observable<IPiece[]> {
+        console.log(typeof(tempPieces));
         return of(tempPieces);
     }
     GetPiece(id: string): Observable<IPiece> {

@@ -1,6 +1,8 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, of } from "rxjs";
+import { Observable, catchError, map } from "rxjs";
 import { IBit } from "../models/bit.model";
+
 
 const tempBits = [
   { id: '15d36b37-9fd7-4246-bf2d-e88eda088ba5', name: 'Apple' },
@@ -34,12 +36,33 @@ const bit = {
 @Injectable({ providedIn: 'root' })
 export class BitService {
 
+  // TASK:03: use HTTPClient to get data from API
 
-  GetBits(): Observable<IBit[]> {
-    return of(tempBits);
+  constructor(private http: HttpClient) {
+
   }
+  GetBits(): Observable<IBit[]> {
+    return this.http.get<IBit[]>('http://localhost:1300/api/bits').pipe(
+      map((response: IBit[]) => {
+        console.log(response);
+        return response;
+      }),
+      catchError(error => {
+        console.log(error.message);
+        return [];
+      })
+    );
+  }
+  
   GetBit(id: string): Observable<IBit> {
-    //return of(tempBits.find(n=>n.id===id))
-    return of(bit);
+    return this.http.get<IBit>(`http://localhost:1300/api/bits/${id}`).pipe(map((response: IBit) => {
+      return response;
+    }),
+      catchError(error => {
+        console.log(error.message);
+        return [];
+      })
+
+    )
   }
 }
