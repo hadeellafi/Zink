@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, catchError, map } from "rxjs";
 import { IBit } from "../models/bit.model";
+import { environment } from "../../environments/environment";
 
 
 const tempBits = [
@@ -38,11 +39,13 @@ export class BitService {
 
   // TASK:03: use HTTPClient to get data from API
 
+  private apiUrl = environment.apiUrl;
+
   constructor(private http: HttpClient) {
 
   }
   GetBits(): Observable<IBit[]> {
-    return this.http.get<IBit[]>('http://localhost:1300/api/bits').pipe(
+    return this.http.get<IBit[]>(`${this.apiUrl}/bits`).pipe(
       map((response: IBit[]) => {
         console.log(response);
         return response;
@@ -53,9 +56,12 @@ export class BitService {
       })
     );
   }
-  
+  // GetBits(): Observable<IBit[]> {
+  //   return this.http.get<IBit[]>(`${this.apiUrl}/bits`)
+  // }
+
   GetBit(id: string): Observable<IBit> {
-    return this.http.get<IBit>(`http://localhost:1300/api/bits/${id}`).pipe(map((response: IBit) => {
+    return this.http.get<IBit>(`${this.apiUrl}/bits/${id}`).pipe(map((response: IBit) => {
       return response;
     }),
       catchError(error => {

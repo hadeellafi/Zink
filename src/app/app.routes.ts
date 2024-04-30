@@ -1,4 +1,4 @@
-import { Routes, provideRouter } from '@angular/router';
+import { Routes, provideRouter, withComponentInputBinding } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 
 // TASK:01: add routes for bits and pieces. Each route refers to a list component that lists dummy data
@@ -29,5 +29,8 @@ const routes: Routes = [
     },
 
 ];
-
-export const AppRoutingProvider = [provideRouter(routes)];
+export const AppRoutingProvider = [provideRouter(routes,
+    // pass option to bind input to the route param
+    withComponentInputBinding()
+  )];
+  
