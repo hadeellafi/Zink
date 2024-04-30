@@ -17,14 +17,14 @@ export class BitService {
   }
 
   GetBits(): Observable<IBit[]> {
-    return this.http.get(`${this.apiUrl}/bits`).pipe(
+    return this.http.get(`/bits`).pipe(
       map((response: any) => <IBit[]>response.data)
     );
   }
 
 
   GetBit(id: string): Observable<IBit> {
-    return this.http.get(`${this.apiUrl}/bits/${id}`).pipe(map((response: any) => {
+    return this.http.get(`/bits/${id}`).pipe(map((response: any) => {
       return <IBit>response.data;
     })
     )

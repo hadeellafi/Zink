@@ -19,14 +19,14 @@ export class PieceService {
 
     GetPieces(): Observable<IPiece[]> {
 
-        return this.http.get(`${this.apiUrl}/pieces`).pipe(
+        return this.http.get(`/pieces`).pipe(
             map((response: any) => {
                 return <IPiece[]>response.data;
             }))
 
     }
     GetPiece(id: string): Observable<IPiece> {
-        return this.http.get(`${this.apiUrl}/pieces/${id}`).pipe(map((response: any) => {
+        return this.http.get(`/pieces/${id}`).pipe(map((response: any) => {
             return <IPiece>response.data;
         }))
     }

@@ -4,16 +4,18 @@ import { HomeComponent } from './components/home/home.component';
 // TASK:01: add routes for bits and pieces. Each route refers to a list component that lists dummy data
 // lazy load the routes
 // TASK:02 add title using title strategy
-//
+// TASK:03: add a homepage component and a route for it
+
 const routes: Routes = [
-    // {
+    {
 
-    //     path: '/',
-    //     component: HomeComponent,
-    //     pathMatch: 'full',
-    //     title: 'home'
+        path: '',
+        loadChildren: ()=>import('./routes/pages.route').then(
+            (m)=> m.PagesRoutes
+        ),
+        title: 'home'
 
-    // },
+    },
     {
         title: 'Bits',
         path: 'bits',
@@ -29,8 +31,9 @@ const routes: Routes = [
     },
 
 ];
+
+// TASK:03: make the title append " - Dome" to every title
 export const AppRoutingProvider = [provideRouter(routes,
     // pass option to bind input to the route param
     withComponentInputBinding()
-  )];
-  
+)];

@@ -1,5 +1,5 @@
-<div class="page">
-    <div class="container">
+<div class="page flex">
+    <div class="container col-6">
         @if(bit$ | async;as bit) {
 
         <!-- TASK:03: display list of bit ingredients (bit.ingredients is an array of name, id, and quantity),
@@ -12,5 +12,5 @@
         }
 
     </div>
-    <dm-detail-partial *ngIf="selectedIngredient" [ingredient]="selectedIngredient"></dm-detail-partial>
+    <dm-detail-partial *ngIf="selectedIngredient" [ingredient]="selectedIngredient" class="col-6"></dm-detail-partial>
 </div>
