@@ -25,8 +25,8 @@ export class PieceDetialsComponent implements OnInit {
         this.piece$ = this.pieceService.GetPiece(this.id);
     }
 
-    DisplayDetails(ingredient: ISegment) {
-        this.selectedSegment = ingredient
+    DisplayDetails(segment: ISegment) {
+        this.selectedSegment = segment
     }
 
 }
