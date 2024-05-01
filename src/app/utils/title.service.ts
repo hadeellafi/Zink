@@ -7,11 +7,10 @@ export class TitleSetter extends TitleStrategy {
     constructor(private readonly title: Title) {
         super();
     }
-    override updateTitle(routerState: RouterStateSnapshot) {
+    updateTitle(routerState: RouterStateSnapshot) {
         const title = this.buildTitle(routerState);
-        if (title !== undefined) {
-            this.title.setTitle(`Dome - | ${title}`);
-        }
+        this.title.setTitle(`${title} - Dome`);
+
     }
 }
 

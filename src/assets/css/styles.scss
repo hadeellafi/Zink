@@ -3,6 +3,9 @@
 // TASK:01: add style to contain the main page in 1200 px maximum wide
 
 // TASK:02 turn these into sass variables
+
+// TASK:04: move to vars.scss file
+
 $red: red;
 $green: green;
 
@@ -27,9 +30,11 @@ nav ul li:last-child {
   margin-left: auto;
   margin-right: 1rem;
 }
+// TASK:04: redefine "a" to have color and pointer
 
 a {
   cursor: pointer;
+  color: brown;
 }
 
 .green {
@@ -49,7 +54,7 @@ a {
 // TASK:03: create a simple two column flex or grid box, and use in details.component.html
 // to split the screen to two parts: left: list of stuff, right: the details.partial of the selected item
 
-.flex {
+.row {
   display: flex;
 }
 
@@ -59,7 +64,7 @@ a {
 
 // TASK:03: add media query to make the top two colum into one 100% column on small screens (one query is enough)
 @media only screen and (max-width: 600px) {
-  .flex {
+  .row {
     display: flex;
     flex-direction: column;
   }

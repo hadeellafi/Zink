@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
-import { INgredient } from "../../models/ingredients.model";
+import { IIngredient } from "../../models/ingredients.model";
 
 @Component({
     selector: "dm-detail-partial",
@@ -8,5 +8,5 @@ import { INgredient } from "../../models/ingredients.model";
     standalone: true,
 })
 export class DetailsPartialComponent {
-    @Input() ingredient: INgredient
+    @Input() ingredient: IIngredient
 }

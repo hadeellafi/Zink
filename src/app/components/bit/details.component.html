@@ -1,16 +1,27 @@
-<div class="page flex">
-    <div class="container col-6">
+<div class="page">
+    <div class="container">
         @if(bit$ | async;as bit) {
+        <h1>{{ bit.name }}</h1>
 
         <!-- TASK:03: display list of bit ingredients (bit.ingredients is an array of name, id, and quantity),
         when clicking on one, display the details in a child component here (name it details.partial) -->
-        <ul>
-            <li *ngFor="let ingredient of bit.ingredients;" (click)="DisplayDetails(ingredient)" class="pointer">
-                {{ ingredient.name }}
-            </li>
-        </ul>
+
+        <!-- TASK:04: display taste, make it capitalized  -->
+        <!-- TASK:04 add a delete button for this bit  -->
+        <div class="row">
+            <div class="col-6">
+                <h4>Ingredients</h4>
+                <ul>
+                    <li *ngFor="let ingredient of bit.ingredients">
+                        <a (click)="displayDetails(ingredient)">{{ ingredient.name }}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-6">
+                <dm-detail-partial [ingredient]="selectedIngredient"></dm-detail-partial>
+            </div>
+        </div>
         }
 
     </div>
-    <dm-detail-partial *ngIf="selectedIngredient" [ingredient]="selectedIngredient" class="col-6"></dm-detail-partial>
 </div>

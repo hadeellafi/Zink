@@ -15,6 +15,9 @@ import { DetailsPartialComponent } from "./details.partial";
 export class PieceDetialsComponent implements OnInit {
     @Input() id: string;
     piece$: Observable<IPiece>;
+
+    // TASK:04: turn this into a behavior subject
+
     selectedSegment: ISegment;
 
     constructor(private pieceService: PieceService) {
@@ -23,9 +26,11 @@ export class PieceDetialsComponent implements OnInit {
 
     ngOnInit(): void {
         this.piece$ = this.pieceService.GetPiece(this.id);
+        // TASK:04: tap into the returned result and update the page title via TitleService, using the name
+
     }
 
-    DisplayDetails(segment: ISegment) {
+    displayDetails(segment: ISegment) {
         this.selectedSegment = segment
     }
 

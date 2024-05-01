@@ -1,1 +1,9 @@
-<h4>{{ingredient.name}}<br>{{ingredient.quantity}}</h4>
+<!-- always check model is availabel -->
+@if(ingredient) {
+
+    <div>
+      <!-- TASK:04 format the quanity x,xxx  -->
+      {{ ingredient.name}} ({{ ingredient.quantity }})
+    </div>
+    }
+    

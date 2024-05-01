@@ -1,5 +1,6 @@
-export interface INgredient {
-    name: string;
-    quantity: string
+
+export interface IIngredient {
     id: string;
-}
+    name: string;
+    quantity: number;
+};

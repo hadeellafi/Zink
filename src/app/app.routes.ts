@@ -1,5 +1,5 @@
-import { Routes, provideRouter, withComponentInputBinding } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
+import { Routes, TitleStrategy, provideRouter, withComponentInputBinding } from '@angular/router';
+import { TitleSetter } from './utils/title.service';
 
 // TASK:01: add routes for bits and pieces. Each route refers to a list component that lists dummy data
 // lazy load the routes
@@ -10,8 +10,8 @@ const routes: Routes = [
     {
 
         path: '',
-        loadChildren: ()=>import('./routes/pages.route').then(
-            (m)=> m.PagesRoutes
+        loadChildren: () => import('./routes/public.route').then(
+            (m) => m.PagesRoutes
         ),
         title: 'home'
 
@@ -36,4 +36,9 @@ const routes: Routes = [
 export const AppRoutingProvider = [provideRouter(routes,
     // pass option to bind input to the route param
     withComponentInputBinding()
-)];
+),
+{
+    provide: TitleStrategy,
+    useClass: TitleSetter
+}
+];

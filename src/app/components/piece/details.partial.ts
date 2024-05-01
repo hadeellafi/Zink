@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { ISegment } from "../../models/segment.model";
 
 @Component({
-    selector: "dm-detail-partial",
+    selector: "dm-piece-details",
     templateUrl: "./details.partial.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,

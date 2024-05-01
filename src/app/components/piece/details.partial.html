@@ -1,2 +1,29 @@
-<h4>{{segment.name}}<br>
-    from: {{segment.from}} - to {{segment.to}}</h4>
+<!-- always check model is availabel -->
+@if(segment) {
+    <div>
+      <h5>{{ segment.name }}</h5>
+      <!-- TASK:04: from and to are time in 24 format, change to 12 format, create a pipe for that.-->
+      <!-- you can use this function to convert 24 hours to 12 hours format
+      const [hour, minute] = clock.split(':');
+      let _h = parseInt(hour, 10);
+      let period = 'AM';
+      if (_h > 11) {
+          _h -= 12;
+          period = 'PM';
+      }
+      if (_h === 0) {
+          _h = 12;
+      }
+    
+      return `${_h}:${minute} ${period}`; -->
+      <p>{{ segment.from }} - {{ segment.to }}</p>
+    </div>
+    
+    <!-- TASK:04: add a reactive form, name, from and to (keep it simply, numbers or strings)
+      save action edits with id
+      then it edit, refresh main list of ingredients
+      remember, there is only one REST method: PUT /api/pieces/:id
+      also notify the notification partial in the root with "Done" -->
+    
+    }
+    
