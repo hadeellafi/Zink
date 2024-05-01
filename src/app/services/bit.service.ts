@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { IBit } from '../models/bit.model';
+import { Bit, IBit } from '../models/bit.model';
 
 
 @Injectable({ providedIn: 'root' })
@@ -17,12 +17,15 @@ export class BitService {
 
   }
 
-  // TASK:04: use our model mapper (NewInstance) here
+ 
+  //TASK:04: move "data" mapper to interceptor
 
   GetBits(): Observable<IBit[]> {
     return this.http.get(this._listUrl).pipe(
-      // TASK:04: move "data" mapper to interceptor
-      map((response: any) => <IBit[]>response.data)
+      map((response: any) => {
+
+        return response.map((bitData: any) => Bit.NewInstance(bitData));
+      })
     );
   }
 
@@ -30,7 +33,11 @@ export class BitService {
   // but remember, the returned element is not guaranteed
   GetBit(id: string): Observable<IBit> {
     return this.http.get(this._detailUrl.replace(':id', id)).pipe(
-      map((response: any) => <IBit>response.data)
+      map((response: any) => {
+
+        response = Bit.NewInstance(response);
+        return response;
+      })
     );
   }
 

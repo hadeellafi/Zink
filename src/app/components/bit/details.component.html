@@ -16,6 +16,8 @@
                         <a (click)="displayDetails(ingredient)">{{ ingredient.name }}</a>
                     </li>
                 </ul>
+                <h4>Taste</h4>
+                <span>{{bit.taste | titlecase }}</span>
             </div>
             <div class="col-6">
                 <dm-detail-partial [ingredient]="selectedIngredient"></dm-detail-partial>
