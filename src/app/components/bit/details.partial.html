@@ -1,9 +1,8 @@
 <!-- always check model is availabel -->
-@if(ingredient) {
+@if(ingredient$|async; as ingredient) {
 
-    <div>
-      <!-- TASK:04 format the quanity x,xxx  -->
-      {{ ingredient.name}} ({{ ingredient.quantity }})
-    </div>
-    }
-    
+<div>
+  <!-- TASK:04 format the quanity x,xxx  -->
+  {{ ingredient.name}} ({{ ingredient.quantity | quantityConvertor}})
+</div>
+}

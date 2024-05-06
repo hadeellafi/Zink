@@ -3,7 +3,7 @@ import { Title } from "@angular/platform-browser";
 import { RouterStateSnapshot, TitleStrategy } from "@angular/router";
 
 @Injectable()
-export class TitleSetter extends TitleStrategy {
+export class TitleService extends TitleStrategy {
     constructor(private readonly title: Title) {
         super();
     }

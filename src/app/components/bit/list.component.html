@@ -5,12 +5,14 @@
     <ul>
       @for(bit of bits;track $index)
       {
-      <li>
+      <li class="row">
         <!-- TASK:03: turn this into a card partial component. with bit as input  -->
-        <dm-bit-card [bit]="bit"></dm-bit-card>
+        <dm-bit-card [bit]="bit" class="col-6"></dm-bit-card>
+        <p class="col-6" (click)="onDelete(bit.id)">delete</p>
       </li>
       }
     </ul>
     }
   </div>
 </div>
+

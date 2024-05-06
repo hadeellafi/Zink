@@ -1,5 +1,5 @@
 import { Routes, TitleStrategy, provideRouter, withComponentInputBinding } from '@angular/router';
-import { TitleSetter } from './utils/title.service';
+import { TitleService } from './utils/title.service';
 
 // TASK:01: add routes for bits and pieces. Each route refers to a list component that lists dummy data
 // lazy load the routes
@@ -39,6 +39,6 @@ export const AppRoutingProvider = [provideRouter(routes,
 ),
 {
     provide: TitleStrategy,
-    useClass: TitleSetter
+    useClass: TitleService
 }
 ];

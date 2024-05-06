@@ -20,9 +20,10 @@
                 <span>{{bit.taste | titlecase }}</span>
             </div>
             <div class="col-6">
-                <dm-detail-partial [ingredient]="selectedIngredient"></dm-detail-partial>
+                <dm-detail-partial [ingredient$]="selectedIngredient$"></dm-detail-partial>
             </div>
         </div>
+        <div class="red" style="cursor: pointer;"  (click)="onDelete()">delete bit</div>
         }
 
     </div>

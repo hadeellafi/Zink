@@ -1,30 +1,34 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { RouterLink, RouterModule } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { IBit } from '../../models/bit.model';
 import { BitService } from '../../services/bit.service';
 import { BitCardComponent } from './card.partial';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  templateUrl: './list.component.html'
-  , changeDetection: ChangeDetectionStrategy.OnPush
-  , standalone: true
-  , imports: [CommonModule, RouterModule, RouterLink, BitCardComponent]
+    templateUrl: './list.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [BitCardComponent,CommonModule]
 })
 export class BitListComponent implements OnInit {
+  bits$: BehaviorSubject<IBit[]> = new BehaviorSubject<IBit[]>([]);
 
-  // TASK:02 get list of bits from a service. let the service return static json
-  // Bind the list to the returned result
-  // Every item in the list should have a link to the details page
+  constructor(private bitService: BitService) {}
 
-  bits$: Observable<IBit[]>;
-  constructor(private bitService: BitService) {
-    //
-  }
   ngOnInit(): void {
-    this.bits$ = this.bitService.GetBits();
+    this.loadBits();
+  }
+
+  onDelete(id: string) {
+    this.bitService.DeleteBit(id).subscribe(() => {
+      this.loadBits();
+    });
+  }
+
+  loadBits() {
+    this.bitService.GetBits().subscribe((bits: IBit[]) => {
+      this.bits$.next(bits);
+    });
   }
 }
-
-

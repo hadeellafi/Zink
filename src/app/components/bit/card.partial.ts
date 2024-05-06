@@ -11,5 +11,5 @@ import { RouterModule } from "@angular/router";
 })
 export class BitCardComponent {
     @Input() bit: IBit;
-
+    
 }
