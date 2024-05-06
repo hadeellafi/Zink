@@ -16,13 +16,14 @@
 
       </ul>
     </nav>
-    <div class="row  space-between">
+    
+    <div class="row space-between">
       <!-- TASK:01 add a message here, if time is < 12:00 show Good morning, else show Good afternoon. Make it green with first message, red with second message-->
       <dm-greeting></dm-greeting>
 
       <!-- TASK:04: add a notification component to display the Done message(like a toast)
     align it to the right on the same level of greeting message -->
-      <!-- <dm-notification class="align-right" msg="hello"></dm-notification> -->
+      <dm-notification [message]="notificationMessage"></dm-notification>
     </div>
   </div>
 </main>

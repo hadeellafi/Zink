@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { BehaviorSubject, Observable, tap } from "rxjs";
+import { BehaviorSubject, Observable, Subscription, tap } from "rxjs";
 import { IBit } from "../../models/bit.model";
 import { BitService } from "../../services/bit.service";
 import { DetailsPartialComponent } from "./details.partial";
@@ -15,15 +15,19 @@ import { ActivatedRoute, Router } from "@angular/router";
     standalone: true,
     imports: [CommonModule, DetailsPartialComponent]
 })
-export class BitDetailsComponent implements OnInit {
+export class BitDetailsComponent implements OnInit,OnDestroy {
 
     @Input() id: string;
     bit$: Observable<IBit>;
     // TASK:04: trun this into behavior subject. Listen to changes to pass value to details.partial component
     selectedIngredient$: BehaviorSubject<IIngredient> = new BehaviorSubject<IIngredient>(null);
 
+    sub:Subscription;
     constructor(private bitService: BitService, private titleService: Title, private router: Router, private route: ActivatedRoute) {
 
+    }
+    ngOnDestroy(): void {
+       this.sub.unsubscribe();
     }
 
     ngOnInit(): void {
@@ -38,8 +42,10 @@ export class BitDetailsComponent implements OnInit {
         this.selectedIngredient$.next(ingredient);
     }
     onDelete() {
-        this.bitService.DeleteBit(this.id)
-        this.router.navigate(['../'], { relativeTo: this.route })
+       this.sub= this.bitService.DeleteBit(this.id).subscribe(() => {
+            this.router.navigate(['../'], { relativeTo: this.route })
+
+        })
 
     }
 

@@ -18,7 +18,7 @@ export class DetailsPartialComponent implements OnChanges, OnDestroy {
     @Input() segment$: BehaviorSubject<ISegment>;
     editForm: FormGroup;
     sub: Subscription;
-    @Output() doneEditing: EventEmitter<string> = new EventEmitter<string>();
+    @Output() notificationMessage = new EventEmitter<string>();
 
     constructor(private formBuilder: FormBuilder, private pieceService: PieceService) {
 
@@ -52,9 +52,9 @@ export class DetailsPartialComponent implements OnChanges, OnDestroy {
 
     onSubmit() {
         this.pieceService.UpdatePiece(this.editForm.value).subscribe(response => {
-            console.log("req response",response);
-            this.doneEditing.emit("done");
-          })
+            console.log("req response", response);
+            this.notificationMessage.emit("done");
+        })
     }
     ngOnDestroy(): void {
         this.sub.unsubscribe;

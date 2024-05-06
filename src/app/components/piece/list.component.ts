@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { PieceService } from "../../services/piece.service";
 import { Observable } from "rxjs";
@@ -19,6 +19,14 @@ export class PieceListComponent implements OnInit {
     // Every item in the list should have a link to the details page
 
     pieces$!: Observable<IPiece[]>;
+
+    @Output() notificationMessage: EventEmitter<string> = new EventEmitter<string>();
+
+    receiveMessage($event: Event) {
+        const message = ($event.target as HTMLInputElement).value;
+        this.notificationMessage.emit(message);
+        console.log("from list", message);
+    }
     constructor(private pieceService: PieceService) {
         //
     }
