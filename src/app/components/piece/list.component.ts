@@ -6,14 +6,14 @@ import { Observable, switchMap } from "rxjs";
 import { IPiece } from "../../models/piece.model";
 import { PieceCardComponent } from "./card.partial";
 import { ToastState } from "../../services/toast.state";
-import { PieceListState } from "../../services/piecelist.state";
+import { PieceState } from "../../services/piece.state";
 
 @Component({
     templateUrl: './list.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [CommonModule, RouterModule, PieceCardComponent],
-    providers: [PieceListState]
+    providers: [PieceState]
 })
 export class PieceListComponent implements OnInit {
 
@@ -25,7 +25,7 @@ export class PieceListComponent implements OnInit {
 
 
     constructor(private pieceService: PieceService,
-        private pieceListState: PieceListState,
+        private pieceListState: PieceState,
         private toast: ToastState) {
         //
     }

@@ -13,4 +13,8 @@ export class Ingredient {
             quantity: data.quantity 
         };
     }
+    public static NewInstances(data: any): IIngredient[] {
+        return data.map(item=>Ingredient.NewInstance(item))
+        
+    }
 }
