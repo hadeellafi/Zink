@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
 import { IPiece } from "../../models/piece.model";
 import { RouterModule } from "@angular/router";
 
@@ -11,5 +11,5 @@ import { RouterModule } from "@angular/router";
 })
 export class PieceCardComponent {
     @Input() piece: IPiece;
-
+    @Output() onDelete: EventEmitter<void> = new EventEmitter()
 }

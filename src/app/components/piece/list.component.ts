@@ -2,15 +2,18 @@ import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { PieceService } from "../../services/piece.service";
-import { Observable } from "rxjs";
+import { Observable, switchMap } from "rxjs";
 import { IPiece } from "../../models/piece.model";
 import { PieceCardComponent } from "./card.partial";
+import { ToastState } from "../../services/toast.state";
+import { PieceListState } from "../../services/piecelist.state";
 
 @Component({
     templateUrl: './list.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [CommonModule, RouterModule, PieceCardComponent]
+    imports: [CommonModule, RouterModule, PieceCardComponent],
+    providers: [PieceListState]
 })
 export class PieceListComponent implements OnInit {
 
@@ -20,17 +23,25 @@ export class PieceListComponent implements OnInit {
 
     pieces$!: Observable<IPiece[]>;
 
-    @Output() notificationMessage: EventEmitter<string> = new EventEmitter<string>();
 
-    receiveMessage($event: Event) {
-        const message = ($event.target as HTMLInputElement).value;
-        this.notificationMessage.emit(message);
-        console.log("from list", message);
-    }
-    constructor(private pieceService: PieceService) {
+    constructor(private pieceService: PieceService,
+        private pieceListState: PieceListState,
+        private toast: ToastState) {
         //
     }
     ngOnInit(): void {
-        this.pieces$ = this.pieceService.GetPieces();
+        this.pieces$ = this.pieceService.GetPieces().pipe(switchMap(res => this.pieceListState.SetList(res)));
+    }
+    deletePiece(piece: IPiece) {
+        this.pieceService.DeletePiece(piece.id).subscribe({
+            next: (res) => {
+                if (res) {
+                    // if deleted successfully, remove from the list, and notify toast
+                    this.pieceListState.deleteItem(piece);
+                    this.toast.updateState({message:`${piece.name} deleted`})
+
+                }
+            }
+        });
     }
 }

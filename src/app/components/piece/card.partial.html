@@ -1,2 +1,10 @@
-<a [routerLink]="['/pieces/', piece.id]">{{piece.name}}</a>
-<br>
+<!-- <a [routerLink]="['/pieces/', piece.id]" (click)="onDelete.emit">{{piece.name}}</a>
+<br> -->
+
+
+<!-- TASK:04: add a delete action, when clicked, refresh list by removing
+  Things to think about: where should the service call be? here or in the main list?
+  how will the list be refreshed
+--><a routerLink="/pieces/{{ piece.id }}">{{ piece.name }}</a> &nbsp;
+<!-- a direct way to emit when there is nothing to emit -->
+<button (click)="onDelete.emit()" class="btn-a">[Delete]</button>

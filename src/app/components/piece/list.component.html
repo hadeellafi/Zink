@@ -7,7 +7,8 @@
       {
 
       <!-- TASK:03: turn this into a card partial component. with piece as input  -->
-      <dm-piece-card [piece]="piece" (notificationMessage)="receiveMessage($event)"></dm-piece-card>
+      <dm-piece-card [piece]="piece" (onDelete)="deletePiece(piece)"></dm-piece-card>
+      <br>
       }
     </ul>
     }

@@ -11,7 +11,7 @@
         <h4>Segments</h4>
         <ul>
           <li *ngFor="let segment of piece.segments">
-            <a (click)="displayDetails(segment)">{{ segment.name }}</a>
+            <a (click)="getSegment(segment)">{{ segment.name }}</a>
           </li>
         </ul>
       </div>

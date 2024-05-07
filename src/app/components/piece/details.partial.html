@@ -1,33 +1,32 @@
 <!-- always check model is availabel -->
 @if(segment) {
-  <div>
-    <h5>{{ segment.name }}</h5>
-    <!-- TASK:04: from and to are time in 24 format, change to 12 format, create a pipe for that -->
-    <p>{{ segment.from | dmclock }} - {{ segment.to | dmclock }}</p>
-  </div>
-  
-  <!-- TASK:04: add a reactive form, name, from and to (keep it simply, numbers or strings)
+<div>
+  <h5>{{ segment.name }}</h5>
+  <!-- TASK:04: from and to are time in 24 format, change to 12 format, create a pipe for that -->
+  <p>{{ segment.from | dmclock }} - {{ segment.to | dmclock }}</p>
+</div>
+
+<!-- TASK:04: add a reactive form, name, from and to (keep it simply, numbers or strings)
     save action edits with id
     then it edit, refresh main list of ingredients
     also notify the notification partial in the root with "Done" -->
-  
-  <form [formGroup]="segmentForm" (ngSubmit)="updateSegment()">
-    <div class="box">
-      <label for="name">Name</label>
-      <input type="text" class="w100" formControlName="name"  id="name">
+
+<form [formGroup]="segmentForm" (ngSubmit)="updateSegment()">
+  <div class="box">
+    <label for="name">Name</label>
+    <input type="text" class="w100" formControlName="name" id="name">
+  </div>
+  <div class="row">
+
+    <div class="col-6 box">
+      <label for="from">From</label>
+      <input type="text" class="w100" formControlName="from" id="from">
     </div>
-    <div class="row">
-  
-      <div class="col-6 box">
-        <label for="from">From</label>
-        <input type="text" class="w100" formControlName="from"  id="from">
-      </div>
-      <div class="col-6 box">
-        <label for="to">To</label>
-        <input type="text" class="w100" formControlName="to"  id="to">
-      </div>
+    <div class="col-6 box">
+      <label for="to">To</label>
+      <input type="text" class="w100" formControlName="to" id="to">
     </div>
-    <button type="submit" class="btn">Save</button>
-  </form>
-  }
-  
+  </div>
+  <button type="submit" class="btn">Save</button>
+</form>
+}
