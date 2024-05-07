@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
 import { IBit } from "../../models/bit.model";
 import { RouterModule } from "@angular/router";
 
@@ -11,5 +11,7 @@ import { RouterModule } from "@angular/router";
 })
 export class BitCardComponent {
     @Input() bit: IBit;
-    
+
+    @Output() onDelete: EventEmitter<void> = new EventEmitter();
+
 }

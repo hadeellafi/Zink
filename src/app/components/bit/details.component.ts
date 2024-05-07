@@ -1,34 +1,37 @@
-import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { BehaviorSubject, Observable, Subscription, tap } from "rxjs";
+import { ChangeDetectionStrategy, Component, Input, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { BehaviorSubject, Observable, tap } from "rxjs";
+import { CapitalizePipe } from "../../lib/pipes/capitalize.pipe";
 import { IBit } from "../../models/bit.model";
-import { BitService } from "../../services/bit.service";
-import { DetailsPartialComponent } from "./details.partial";
 import { IIngredient } from "../../models/ingredients.model";
-import { Title } from "@angular/platform-browser";
-import { ActivatedRoute, Router } from "@angular/router";
+import { BitService } from "../../services/bit.service";
+import { ToastState } from "../../services/toast.state";
+import { TitleService } from "../../utils/title.service";
+import { DetailsPartialComponent } from "./details.partial";
 
 
 @Component({
     templateUrl: "./details.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [CommonModule, DetailsPartialComponent]
+    imports: [CommonModule, DetailsPartialComponent, CapitalizePipe]
 })
-export class BitDetailsComponent implements OnInit,OnDestroy {
+export class BitDetailsComponent implements OnInit {
 
     @Input() id: string;
     bit$: Observable<IBit>;
     // TASK:04: trun this into behavior subject. Listen to changes to pass value to details.partial component
     selectedIngredient$: BehaviorSubject<IIngredient> = new BehaviorSubject<IIngredient>(null);
 
-    sub:Subscription;
-    constructor(private bitService: BitService, private titleService: Title, private router: Router, private route: ActivatedRoute) {
+    constructor(private bitService: BitService,
+        private titleService: TitleService,
+        private router: Router,
+        private toast: ToastState
+    ) {
 
     }
-    ngOnDestroy(): void {
-       this.sub.unsubscribe();
-    }
+
 
     ngOnInit(): void {
         this.bit$ = this.bitService.GetBit(this.id).pipe(
@@ -41,9 +44,14 @@ export class BitDetailsComponent implements OnInit,OnDestroy {
     displayDetails(ingredient: IIngredient) {
         this.selectedIngredient$.next(ingredient);
     }
-    onDelete() {
-       this.sub= this.bitService.DeleteBit(this.id).subscribe(() => {
-            this.router.navigate(['../'], { relativeTo: this.route })
+    deleteBit(bit: IBit) {
+        this.bitService.DeleteBit(bit).subscribe({
+            next: (res) => {
+                if (res) {
+                    this.toast.updateState({ message: `${bit.name} Deleted` });
+                    this.router.navigateByUrl('/bits');
+                }
+            }
 
         })
 

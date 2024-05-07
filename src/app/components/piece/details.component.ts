@@ -1,17 +1,17 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, Input, OnInit } from "@angular/core";
-import { Title } from "@angular/platform-browser";
 import { BehaviorSubject, Observable, tap } from "rxjs";
 import { IPiece } from "../../models/piece.model";
 import { ISegment } from "../../models/segment.model";
 import { PieceService } from "../../services/piece.service";
-import { DetailsPartialComponent } from "./details.partial";
+import { TitleService } from "../../utils/title.service";
+import { PieceDetailsPartial } from "./details.partial";
 
 @Component({
     templateUrl: "./details.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [CommonModule, DetailsPartialComponent]
+    imports: [CommonModule, PieceDetailsPartial]
 })
 export class PieceDetialsComponent implements OnInit {
     @Input() id: string;
@@ -21,7 +21,7 @@ export class PieceDetialsComponent implements OnInit {
 
     selectedSegment$: BehaviorSubject<ISegment> = new BehaviorSubject<ISegment>(null);
 
-    constructor(private pieceService: PieceService,private titleService:Title) {
+    constructor(private pieceService: PieceService, private titleService: TitleService) {
 
     }
 

@@ -7,12 +7,10 @@
       {
       <li class="row">
         <!-- TASK:03: turn this into a card partial component. with bit as input  -->
-        <dm-bit-card [bit]="bit" class="col-6"></dm-bit-card>
-        <p class="col-6" (click)="onDelete(bit.id)">delete</p>
+        <dm-bit-card [bit]="bit" (onDelete)="deleteBit(bit)"></dm-bit-card>
       </li>
       }
     </ul>
     }
   </div>
 </div>
-

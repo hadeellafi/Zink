@@ -9,21 +9,21 @@
         <!-- TASK:02 add another link for Account profile, aligned to the right. Without any links -->
         <!-- TASK:04: make the selected link bold (pass a class name) -->
 
-        <li><a routerLink="/">Home</a></li>
-        <li><a routerLink="/bits">Bits</a></li>
-        <li><a routerLink="/pieces">Pieces</a></li>
-        <li><a routerLink="">Account profile</a></li>
+        <li><a routerLink="/" routerLinkActive="text-bold" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+        <li><a routerLink="/bits" routerLinkActive="text-bold">Bits</a></li>
+        <li><a routerLink="/pieces" routerLinkActive="text-bold">Pieces</a></li>
+        <li><a  routerLinkActive="text-bold">Account profile</a></li>
 
       </ul>
     </nav>
-    
+
     <div class="row space-between">
       <!-- TASK:01 add a message here, if time is < 12:00 show Good morning, else show Good afternoon. Make it green with first message, red with second message-->
       <dm-greeting></dm-greeting>
 
       <!-- TASK:04: add a notification component to display the Done message(like a toast)
     align it to the right on the same level of greeting message -->
-      <dm-notification [message]="notificationMessage"></dm-notification>
+    <dm-toast></dm-toast>
     </div>
   </div>
 </main>

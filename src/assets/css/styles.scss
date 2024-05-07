@@ -38,7 +38,11 @@ nav ul li:last-child {
 
 a {
   cursor: pointer;
-  color: brown;
+  color: $brown;
+}
+
+.text-bold {
+  font-weight: bold;
 }
 
 .green {
@@ -81,4 +85,29 @@ a {
     width: 100%;
   }
 
+}
+
+.space {
+  margin-block-end: 1rem;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  background-color: $green;
+  color: white;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($green, 10%);
+  }
+
+}
+
+.btn-a {
+  padding: 0;
+  margin-inline: 0.2rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }

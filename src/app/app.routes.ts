@@ -40,5 +40,5 @@ export const AppRoutingProvider = [provideRouter(routes,
 {
     provide: TitleStrategy,
     useClass: TitleService
-}
+},
 ];

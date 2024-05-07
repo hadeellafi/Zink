@@ -1,0 +1,12 @@
+// TASK:05: make this line simpler by providing it in angular.json stylePreprocessorOptions
+@import '../../../assets/css/vars';
+
+.toast-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: inline-block;
+  z-index: 1000;
+  padding: 1rem;
+  background-color: $bg-pink;
+}

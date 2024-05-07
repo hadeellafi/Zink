@@ -1,8 +1,9 @@
 <!-- always check model is availabel -->
-@if(ingredient$|async; as ingredient) {
+@if(ingredient) {
 
 <div>
   <!-- TASK:04 format the quanity x,xxx  -->
-  {{ ingredient.name}} ({{ ingredient.quantity | quantityConvertor}})
+  {{ ingredient.name}} {{ ingredient.quantity | number: '1.0-0'}}
+  <!-- TASK:05: add a delete button here, that would remove ingredient -->
 </div>
 }

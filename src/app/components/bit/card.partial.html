@@ -2,5 +2,6 @@
   Things to think about: where should the service call be? here or in the main list?
   how will the list be refreshed
 -->
-
-<a [routerLink]="['/bits/', bit.id]">{{bit.name}}</a>
+<a routerLink="/bits/{{ bit.id }}">{{ bit.name }}</a> &nbsp;
+<!-- a direct way to emit when there is nothing to emit -->
+<button (click)="onDelete.emit()" class="btn-a">[Delete]</button>
