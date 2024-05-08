@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MessageComponent } from './components/common/greeting.partial';
-import { ToastPartial } from './components/common/toast.partial';
+import { ToastPartial } from './lib/toast/toast.partial';
 
 
 @Component({

@@ -1,0 +1,19 @@
+@if(ingredients$|async;as ingredients )
+{
+<div class="row">
+    <div class="col-6">
+        <h4>Ingredients</h4>
+        <ul>
+            <li *ngFor="let ingredient of ingredients">
+                <a (click)="displayDetails(ingredient)">{{ ingredient.name }}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-6">
+        @if(selectedIngredient$|async;as selectedIngredient){
+        <dm-ingredient-details class="col-6" [ingredient]="selectedIngredient"
+            (onDelete)="deleteIngredient(selectedIngredient)"></dm-ingredient-details>
+        }
+    </div>
+</div>
+}

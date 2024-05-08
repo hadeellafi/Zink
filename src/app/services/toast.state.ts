@@ -1,6 +1,8 @@
-import { Injectable } from "@angular/core";
-import { IToast } from "../models/toast.model";
-import { BehaviorSubject, Observable } from "rxjs";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, timer } from 'rxjs';
+import { IToast } from '../models/toast.model';
+
+// TASK:05: add timeout property set by default to 5 seconds, hide toast after timer
 
 @Injectable({ providedIn: 'root' })
 export class ToastState {
@@ -9,5 +11,12 @@ export class ToastState {
 
     updateState(state: IToast) {
         this.stateElement.next(state);
+        this.timeout()
+    }
+
+    timeout() {
+        timer(5000).subscribe(() => {
+            this.stateElement.next(null);
+        });
     }
 }

@@ -9,7 +9,7 @@ import { RouterModule } from "@angular/router";
     standalone: true,
     imports: [RouterModule]
 })
-export class BitCardComponent {
+export class BitCardPartial {
     @Input() bit: IBit;
 
     @Output() onDelete: EventEmitter<void> = new EventEmitter();

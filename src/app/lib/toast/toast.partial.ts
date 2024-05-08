@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ToastState } from '../../services/toast.state';
 import { IToast } from '../../models/toast.model';
+import { ToastState } from '../../services/toast.state';
 
 // TASK:05: refactor by putting toast in its own lib/toast folder
 @Component({

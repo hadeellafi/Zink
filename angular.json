@@ -36,6 +36,12 @@
             "styles": [
               "src/assets/css/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "/src",
+                "/assets/css/vars"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
@@ -74,7 +80,6 @@
           },
           "defaultConfiguration": "development"
         }
-       
       }
     }
   }

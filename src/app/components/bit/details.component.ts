@@ -1,28 +1,30 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { BehaviorSubject, Observable, tap } from "rxjs";
+import { Observable, tap } from "rxjs";
 import { CapitalizePipe } from "../../lib/pipes/capitalize.pipe";
 import { IBit } from "../../models/bit.model";
-import { IIngredient } from "../../models/ingredients.model";
 import { BitService } from "../../services/bit.service";
 import { ToastState } from "../../services/toast.state";
 import { TitleService } from "../../utils/title.service";
-import { DetailsPartialComponent } from "./details.partial";
+import { IngredientDetailsPartial } from "../ingredient/details.partial";
+import { IngredientListPartial } from "../ingredient/list.partial";
+import { IngredientState } from "../../services/ingredient.state";
 
 
 @Component({
     templateUrl: "./details.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [CommonModule, DetailsPartialComponent, CapitalizePipe]
+    imports: [CommonModule, IngredientDetailsPartial, CapitalizePipe, IngredientListPartial],
+    providers: [IngredientState]
 })
 export class BitDetailsComponent implements OnInit {
 
     @Input() id: string;
     bit$: Observable<IBit>;
     // TASK:04: trun this into behavior subject. Listen to changes to pass value to details.partial component
-    selectedIngredient$: BehaviorSubject<IIngredient> = new BehaviorSubject<IIngredient>(null);
+    // selectedIngredient$: BehaviorSubject<IIngredient> = new BehaviorSubject<IIngredient>(null);
 
     constructor(private bitService: BitService,
         private titleService: TitleService,
@@ -41,9 +43,9 @@ export class BitDetailsComponent implements OnInit {
 
     }
 
-    displayDetails(ingredient: IIngredient) {
-        this.selectedIngredient$.next(ingredient);
-    }
+    // displayDetails(ingredient: IIngredient) {
+    //     this.selectedIngredient$.next(ingredient);
+    // }
     deleteBit(bit: IBit) {
         this.bitService.DeleteBit(bit).subscribe({
             next: (res) => {

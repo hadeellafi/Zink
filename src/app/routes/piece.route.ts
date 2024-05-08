@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { PieceListComponent } from '../components/piece/list.component';
-import { PieceDetialsComponent } from '../components/piece/details.component';
+import { PieceDetailsComponent } from '../components/piece/details.component';
 // **gulpimport**
 
 export const PieceRoutes: Routes = [
@@ -12,6 +12,6 @@ export const PieceRoutes: Routes = [
   ,
   {
     path: ':id',
-    component: PieceDetialsComponent
+    component: PieceDetailsComponent
   }
 ];

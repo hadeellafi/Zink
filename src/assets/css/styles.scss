@@ -6,7 +6,7 @@
 
 // TASK:04: move to vars.scss file
 
-@import './vars.scss';
+@import 'vars';
 
 body {
   max-width: 1200px;
@@ -74,6 +74,16 @@ a {
   width: 50%;
 }
 
+.col-12 {
+  width: 100%;
+
+}
+
+.column-direction {
+  flex-direction: column;
+
+}
+
 // TASK:03: add media query to make the top two colum into one 100% column on small screens (one query is enough)
 @media only screen and (max-width: 600px) {
   .row {
@@ -110,4 +120,7 @@ a {
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+.border-red {
+  border-color: $red;
 }

@@ -1,17 +1,17 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, switchMap } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { IBit } from '../../models/bit.model';
 import { BitService } from '../../services/bit.service';
-import { BitCardComponent } from './card.partial';
-import { CommonModule } from '@angular/common';
 import { BitListState } from '../../services/bit.state';
 import { ToastState } from '../../services/toast.state';
+import { BitCardPartial } from './card.partial';
 
 @Component({
   templateUrl: './list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [BitCardComponent, CommonModule],
+  imports: [BitCardPartial , CommonModule],
   providers: [BitListState]
 })
 export class BitListComponent implements OnInit {

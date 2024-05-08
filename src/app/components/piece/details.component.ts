@@ -7,15 +7,16 @@ import { PieceService } from "../../services/piece.service";
 import { TitleService } from "../../utils/title.service";
 import { PieceDetailsPartial } from "./details.partial";
 import { PieceState } from "../../services/piece.state";
+import { ToastState } from "../../services/toast.state";
 
 @Component({
     templateUrl: "./details.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [CommonModule, PieceDetailsPartial],
-    providers:[PieceState]
+    providers: [PieceState]
 })
-export class PieceDetialsComponent implements OnInit {
+export class PieceDetailsComponent implements OnInit {
     @Input() id: string;
     piece$: Observable<IPiece>;
 
@@ -23,32 +24,53 @@ export class PieceDetialsComponent implements OnInit {
 
     selectedSegment$: BehaviorSubject<ISegment> = new BehaviorSubject<ISegment>(null);
 
-
-    constructor(private pieceService: PieceService, private titleService: TitleService,
-        private pieceState: PieceState
+    constructor(private pieceService: PieceService,
+        private titleService: TitleService,
+        private pieceState: PieceState,
+        private toast: ToastState
     ) {
 
     }
 
     ngOnInit(): void {
-        // this.piece$ = this.pieceService.GetPiece(this.id).pipe(
-        //     tap((res) => {
-        //         this.titleService.setTitle(res.name);
-        //     })
-        // );
+
         this.piece$ = this.pieceService.GetPiece(this.id).pipe(
-            // since we're using piece state, we need to first set it up from service
             switchMap(piece => this.pieceState.setState(piece)),
 
             // TASK:04: tap into the returned result and update the page title via TitleService, using the name
             tap(piece => this.titleService.setTitle(piece.name))
         );
-        // TASK:04: tap into the returned result and update the page title via TitleService, using the name
-
     }
 
     getSegment(segment: ISegment) {
+        // progresss
         this.selectedSegment$.next(segment);
     }
+    saveSegment(segment: Partial<ISegment>, piece: IPiece) {
 
+        // TASK:05: refactor, move this to model and service
+
+        // two options available,
+        // 1. either call the service directly:
+        this.pieceService.UpdateSegment(piece, segment).subscribe({
+            next: (res) => {
+                // have a peak
+                // TASK:05 move response logging for all responses to interceptor
+                // console.log(res);
+
+                // hide the save form by simply setting the selected segment to null
+                this.selectedSegment$.next(null);
+
+                // notify the toaster (global state)
+                this.toast.updateState({ message: 'Done' });
+
+                // update the segments, or the piece (local state)
+                this.pieceState.updateState(res);
+            }
+        });
+
+        // 2. or call the model first, then the sevice
+        // const _newpiece = Piece.UpdateSegment(piece, segment);
+        // this.pieceService.UpdatePiece(_newpiece)...
+    }
 }

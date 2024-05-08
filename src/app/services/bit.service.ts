@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnDestroy } from '@angular/core';
-import { Observable, Subscription, catchError, map, tap } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable, map } from 'rxjs';
 import { Bit, IBit } from '../models/bit.model';
+import { Config } from '../utils/config';
 
 
 @Injectable({ providedIn: 'root' })
@@ -9,11 +10,11 @@ export class BitService {
 
   // urls here, to be moved out later
   // TASK:05 movet to config file (on root is better place for it /config.ts)
-  private _listUrl = '/bits';
-  private _detailUrl = '/bits/:id';
-  private _createUrl = '/bits';
-  private _updateUrl = '/bits/:id';
-  private _deleteUrl = '/bits/:id';
+  private _listUrl = Config.Api.bit.list;
+  private _detailUrl = Config.Api.bit.details;
+  private _createUrl = Config.Api.bit.create;
+  private _updateUrl = Config.Api.bit.update;
+  private _deleteUrl = Config.Api.bit.delete;
 
   // TASK:03: use HTTPClient to get data from API
   // use the nodejs server in Backend

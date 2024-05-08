@@ -2,17 +2,18 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { IIngredient, Ingredient } from '../models/ingredients.model';
+import { Config } from '../utils/config';
 
 
 @Injectable({ providedIn: 'root' })
 export class IngredientService {
 
 
-    private _listUrl = '';
-    private _detailUrl = '';
-    private _createUrl = '';
-    private _updateUrl = '';
-    private _deleteUrl = '';
+    private _listUrl = Config.Api.ingredient.list;
+    private _detailUrl = Config.Api.ingredient.details;
+    private _createUrl = Config.Api.ingredient.create;
+    private _updateUrl = Config.Api.ingredient.update;
+    private _deleteUrl = Config.Api.ingredient.delete;
 
 
     constructor(private http: HttpClient) {
@@ -21,7 +22,7 @@ export class IngredientService {
 
 
     GetIngredients(bitId: string): Observable<IIngredient[]> {
-        return this.http.get(this._listUrl).pipe(
+        return this.http.get(this._listUrl.replace(':id', bitId)).pipe(
 
             map((response: any) => Ingredient.NewInstances(response))
         );
@@ -45,11 +46,13 @@ export class IngredientService {
         );
     }
 
-    DeleteIngredient(bit: IIngredient): Observable<boolean> {
-        return this.http.delete(this._deleteUrl.replace(':id', bit.id)).pipe(
+    DeleteIngredient(bitId: string, ingredient: IIngredient): Observable<boolean> {
+        const url = this._deleteUrl.replace(':id', bitId).replace(':iid', ingredient.id);
+        return this.http.delete(url).pipe(
             map((response: any) => response)
         );
     }
+
 
     // TASK:05: seperate ingredients into its own service with its own REST methods
     // also reflect that on model and components, create a new folder for ingredients
