@@ -6,14 +6,14 @@
 
 // TASK:04: move to vars.scss file
 
-@import 'vars';
+@import "vars";
 
 body {
   max-width: 1200px;
   margin: 0 auto;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
-  font-style: normal
+  font-style: normal;
 }
 
 nav {
@@ -25,14 +25,11 @@ nav ul {
   display: flex;
   gap: 1rem;
   align-items: center;
-
 }
 
 nav ul li:last-child {
   margin-left: auto;
 }
-
-
 
 // TASK:04: redefine "a" to have color and pointer
 
@@ -76,12 +73,10 @@ a {
 
 .col-12 {
   width: 100%;
-
 }
 
 .column-direction {
   flex-direction: column;
-
 }
 
 // TASK:03: add media query to make the top two colum into one 100% column on small screens (one query is enough)
@@ -94,7 +89,6 @@ a {
   .col-6 {
     width: 100%;
   }
-
 }
 
 .space {
@@ -111,7 +105,6 @@ a {
   &:hover {
     background-color: darken($green, 10%);
   }
-
 }
 
 .btn-a {

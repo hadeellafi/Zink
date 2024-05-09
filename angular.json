@@ -38,8 +38,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "/src",
-                "/assets/css/vars"
+                "/src/assets/css/vars"
               ]
             },
             "scripts": []

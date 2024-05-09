@@ -7,10 +7,10 @@ export const BitRoutes: Routes = [
   // TASK:02: add a route for bit details. The route refers to a details component that shows dummy data
   {
     path: '',
-    component: BitListComponent
+    component: BitListComponent,
   },
   {
-    path: ":id",
-    component: BitDetailsComponent
-  }
+    path: ':id',
+    component: BitDetailsComponent,
+  },
 ];

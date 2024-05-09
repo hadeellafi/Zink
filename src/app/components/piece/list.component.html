@@ -1,14 +1,15 @@
 <div class="page">
   <div class="container">
-    @if(pieces$|async ;as pieces)
-    {
+    @if(pieces$|async ;as pieces) {
     <ul>
-      @for(piece of pieces;track $index)
-      {
+      @for(piece of pieces;track $index) {
 
       <!-- TASK:03: turn this into a card partial component. with piece as input  -->
-      <dm-piece-card [piece]="piece" (onDelete)="deletePiece(piece)"></dm-piece-card>
-      <br>
+      <dm-piece-card
+        [piece]="piece"
+        (onDelete)="deletePiece(piece)"
+      ></dm-piece-card>
+      <br />
       }
     </ul>
     }

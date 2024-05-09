@@ -1,40 +1,37 @@
 <div class="page">
-    <div class="container">
-        @if(bit$ | async;as bit) {
-        <h1>{{ bit.name }}</h1>
+  <div class="container">
+    @if(bit$ | async;as bit) {
+    <h1>{{ bit.name }}</h1>
 
-        <!-- TASK:03: display list of bit ingredients (bit.ingredients is an array of name, id, and quantity),
+    <!-- TASK:03: display list of bit ingredients (bit.ingredients is an array of name, id, and quantity),
         when clicking on one, display the details in a child component here (name it details.partial) -->
 
-        <!-- TASK:04: display taste, make it capitalized  -->
-        <!-- TASK:04 add a delete button for this bit  -->
-        <!-- TASK:04 add a delete button for this bit  -->
-        <div class="space">
-            <button class="btn" (click)="deleteBit(bit)">Delete</button>
-        </div>
+    <!-- TASK:04: display taste, make it capitalized  -->
+    <!-- TASK:04 add a delete button for this bit  -->
+    <!-- TASK:04 add a delete button for this bit  -->
+    <div class="space">
+      <button class="btn" (click)="deleteBit(bit)">Delete</button>
+    </div>
 
-        <div class="row column-direction ">
-
-            <h4>Ingredients</h4>
-            <!-- TASK:05 move this to its new component for ingredients/list.partial -->
-            <!-- <ul>
+    <div class="row column-direction">
+      <h4>Ingredients</h4>
+      <!-- TASK:05 move this to its new component for ingredients/list.partial -->
+      <!-- <ul>
                     <li *ngFor="let ingredient of bit.ingredients">
                         <a (click)="displayDetails(ingredient)">{{ ingredient.name }}</a>
                     </li>
                 </ul> -->
-            <dm-ingredient-list [bitId]="bit.id"></dm-ingredient-list>
-            <div class="row">
-                <div class="col-12">
-                    <h4>Taste</h4>
-                    <span>{{bit.taste | dmcapitalize }}</span>
-                </div>
-            </div>
-
-            <!-- TASK:05 move this to its new component for ingredients/details.partial -->
-            <!-- <dm-ingredient-details [ingredient]="selectedIngredient$|async"></dm-ingredient-details> -->
-
+      <dm-ingredient-list [bitId]="bit.id"></dm-ingredient-list>
+      <div class="row">
+        <div class="col-12">
+          <h4>Taste</h4>
+          <span>{{ bit.taste | dmcapitalize }}</span>
         </div>
-        }
+      </div>
 
+      <!-- TASK:05 move this to its new component for ingredients/details.partial -->
+      <!-- <dm-ingredient-details [ingredient]="selectedIngredient$|async"></dm-ingredient-details> -->
     </div>
+    }
+  </div>
 </div>

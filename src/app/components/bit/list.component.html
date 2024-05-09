@@ -3,8 +3,7 @@
     <!-- use an if to assign to local variable to be used later. and to make sure it binds when available -->
     @if (bits$ | async; as bits) {
     <ul>
-      @for(bit of bits;track $index)
-      {
+      @for(bit of bits;track $index) {
       <li class="row">
         <!-- TASK:03: turn this into a card partial component. with bit as input  -->
         <dm-bit-card [bit]="bit" (onDelete)="deleteBit(bit)"></dm-bit-card>
