@@ -24,6 +24,7 @@ export class IngredientListPartial implements OnInit {
   @Input() bitId: string;
   selectedIngredient$: BehaviorSubject<IIngredient> =
     new BehaviorSubject<IIngredient>(null);
+
   ingredients$: Observable<IIngredient[]>;
   constructor(
     private ingredientStateService: IngredientState,
