@@ -13,24 +13,26 @@
       <button class="btn" (click)="deleteBit(bit)">Delete</button>
     </div>
 
-    <div class="row column-direction">
-      <h4>Ingredients</h4>
-      <!-- TASK:05 move this to its new component for ingredients/list.partial -->
-      <!-- <ul>
-                    <li *ngFor="let ingredient of bit.ingredients">
-                        <a (click)="displayDetails(ingredient)">{{ ingredient.name }}</a>
-                    </li>
-                </ul> -->
-      <dm-ingredient-list [bitId]="bit.id"></dm-ingredient-list>
-      <div class="row">
-        <div class="col-12">
-          <h4>Taste</h4>
-          <span>{{ bit.taste | dmcapitalize }}</span>
-        </div>
+    <div class="row">
+      <div class="col-6">
+        <!-- TASK:05 move this to its new component for ingredients/details.partial -->
+        <h4>Ingredients</h4>
+        <dm-ingredient-list
+          [id]="bit.id"
+          (onSelect)="getIngredient($event)"
+        ></dm-ingredient-list>
       </div>
+      <div class="col-6">
+        <!-- TASK:05 move this to its new component for ingredients/details.partial -->
+        <!-- <ng-container *ngIf="selectedIngredient$ | async as ingredient">
+          <dm-ingredient-details
+         
+            (onDelete)="deleteIngredient(ingredient)"
+          ></dm-ingredient-details>
+        </ng-container> -->
+        <router-outlet name='bitRouter'></router-outlet>
 
-      <!-- TASK:05 move this to its new component for ingredients/details.partial -->
-      <!-- <dm-ingredient-details [ingredient]="selectedIngredient$|async"></dm-ingredient-details> -->
+      </div>
     </div>
     }
   </div>

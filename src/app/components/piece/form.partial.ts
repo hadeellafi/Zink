@@ -16,15 +16,14 @@ import {
 } from '@angular/forms';
 import { ClockPipe } from '../../lib/pipes/clock.pipe';
 import { ISegment } from '../../models/segment.model';
-import { segmentFormPartial } from './form.partial';
 @Component({
-  selector: 'dm-piece-details',
-  templateUrl: './details.partial.html',
+  selector: 'dm-segment-form',
+  templateUrl: './form.partial.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [CommonModule, ClockPipe, ReactiveFormsModule,segmentFormPartial],
+  imports: [CommonModule, ClockPipe, ReactiveFormsModule],
 })
-export class PieceDetailsPartial implements OnInit {
+export class segmentFormPartial implements OnInit {
   // one way to work with changing inputs:
   private _segment: ISegment;
   @Input() get segment(): ISegment {

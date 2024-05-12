@@ -1,3 +1,5 @@
+import { HttpEventType, HttpRequest } from '@angular/common/http';
+import { MonoTypeOperatorFunction, pipe, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 export function _debug(o, message, type) {
@@ -30,15 +32,29 @@ export function _debug(o, message, type) {
         );
     }
   }
-  // set _indebug to true in your environment file, could be anywhere
 }
-export function _attn(o, message) {
-  if (window && (window['_indebug'] = environment.production)) {
-    // use debug to filter in console window
-    console.debug(
-      '%c ' + message,
-      'background: orange; font-weight: bold; color: black;',
-      o
-    );
-  }
-}
+// export function _attn(o, message) {
+//   if (window && (window['_indebug'] = environment.production)) {
+//     // use debug to filter in console window
+//     console.debug(
+//       '%c ' + message,
+//       'background: orange; font-weight: bold; color: black;',
+//       o
+//     );
+//   }
+// }
+export const successDebugOperator = (req: HttpRequest<any>): MonoTypeOperatorFunction<any> => {
+  return pipe(
+    tap({
+      // don't log errors, just success
+      next: (res) => {
+        // notice the different types of "HttpEvent"
+        if (res.type !== HttpEventType.Sent) {
+       
+          _debug(res.body, `${req.method} ${req.url}`, 'p');
+        }
+      },
+    })
+  );
+};
+/////////////////////////////////////

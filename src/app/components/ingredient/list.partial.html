@@ -1,20 +1,7 @@
-@if(ingredients$|async;as ingredients ) {
-<div class="row">
-  <div class="col-6">
-    <ul>
-      <li *ngFor="let ingredient of ingredients">
-        <a (click)="displayDetails(ingredient)">{{ ingredient.name }}</a>
-      </li>
-    </ul>
-  </div>
-  <div class="col-6">
-    @if(selectedIngredient$|async;as selectedIngredient){
-    <dm-ingredient-details
-      class="col-6"
-      [ingredient]="selectedIngredient"
-      (onDelete)="deleteIngredient(selectedIngredient)"
-    ></dm-ingredient-details>
-    }
-  </div>
-</div>
-}
+<ul *ngIf="ingredients$ | async as ingredients">
+  <li *ngFor="let ingredient of ingredients">
+    <a [routerLink]="[{ outlets: { bitRouter: ['ingredients', ingredient.id] } }]">
+      {{ ingredient.name }}
+    </a>
+  </li>
+</ul>

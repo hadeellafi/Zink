@@ -10,28 +10,7 @@
     save action edits with id
     then it edit, refresh main list of ingredients
     also notify the notification partial in the root with "Done" -->
+<!-- TASK:06: this looks like a segment form partial, move it to its own component -->
 
-<form [formGroup]="segmentForm" (ngSubmit)="saveSegment()">
-  <div class="box">
-    <label for="name">Name</label>
-    <input
-      type="text"
-      [class.border-red]="segmentForm.controls['name'].errors"
-      class="w100"
-      formControlName="name"
-      id="name"
-    />
-  </div>
-  <div class="row">
-    <div class="col-6 box">
-      <label for="from">From</label>
-      <input type="text" class="w100" formControlName="from" id="from" />
-    </div>
-    <div class="col-6 box">
-      <label for="to">To</label>
-      <input type="text" class="w100" formControlName="to" id="to" />
-    </div>
-  </div>
-  <button type="submit" class="btn">Save</button>
-</form>
+<!-- <dm-segment-form (onSave)="saveSegment($event)"></dm-segment-form> -->
 }

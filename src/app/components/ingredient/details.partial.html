@@ -1,10 +1,13 @@
-<!-- always check model is availabel -->
-@if(ingredient) {
+<ng-container *ngIf="ingredient$|async as ingredient">
 
-<div>
-  <!-- TASK:04 format the quanity x,xxx  -->
-  {{ ingredient.name}} {{ ingredient.quantity | number: '1.0-0'}}
-  <!-- TASK:05: add a delete button here, that would remove ingredient -->
-  <button (click)="onDelete.emit()">delete ingredient</button>
-</div>
-}
+  <div>
+    <!-- TASK:04 format the quanity x,xxx  -->
+    {{ ingredient.name}} {{ ingredient.quantity | number: '1.0-0'}}
+    <!-- TASK:05: add a delete button here, that would remove ingredient -->
+    <div>
+      <button class="btn" (click)="onDelete.emit()">Delete</button>
+    </div>
+
+  </div>
+
+</ng-container>

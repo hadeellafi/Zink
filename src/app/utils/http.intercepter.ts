@@ -1,15 +1,14 @@
 import {
-  HttpEventType,
   HttpHandlerFn,
   HttpInterceptorFn,
   HttpRequest,
   HttpResponse,
 } from '@angular/common/http';
-import { catchError, map, tap, throwError } from 'rxjs';
+import { catchError, map, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { _debug } from './debug';
+import { successDebugOperator } from './debug';
 
-const mapData = (res: any) => {
+export const mapData = (res: any) => {
   // check for res.body and res.body.data
   if (res instanceof HttpResponse) {
     // clone body and modify so that "data" is removed as a wrapper
@@ -32,25 +31,15 @@ export const DomeInterceptorFn: HttpInterceptorFn = (
   // TASK:04: the api returns data in "data" node, map result here.
   return next(adjustedReq).pipe(
     map((response) => mapData(response)),
-    // add a console logger for all responses, show enough information
-    tap({
-      // don't log errors, just success
-      next: (res) => {
-        // notice the different types of "HttpEvent"
-        if (res.type !== HttpEventType.Sent) {
-          // TASK:06: refactor out of the interceptor. Create a custom Rxjs operator
-          // TASK:06: create a console wrapper, move this into Javascript, and declare via typings
+    // TASK:06: refactor out of the interceptor. Create a custom Rxjs operator
+    // TASK:06: create a console wrapper, move this into Javascript, and declare via typings
 
-          _debug(res, `{req.method} ${req.url}`, 'p');
-        }
-      },
-    }),
+    successDebugOperator(req),
     catchError((err) => {
-      // when loggin an error via catchError, you need to rethrow, or return a new observable
-    //   console.error('Dome error:', err);
-      _debug(err, `Dome error:`, 'e');
-      // this will log the error again.
-      // TASK:06 stop it from logging its own error using Angular ErrorHandler token
+      // // when loggin an error via catchError, you need to rethrow, or return a new observable
+      // //   console.error('Dome error:', err);
+      // // this will log the error again.
+      // // TASK:06 stop it from logging its own error using Angular ErrorHandler token
       return throwError(() => err);
     })
   );
