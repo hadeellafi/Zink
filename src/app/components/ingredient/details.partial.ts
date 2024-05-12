@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,11 +7,10 @@ import {
   Output,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, map, switchMap } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { IIngredient } from '../../models/ingredients.model';
 import { IngredientService } from '../../services/ingredient.service';
 import { IngredientState } from '../../services/ingredient.state';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'dm-ingredient-details',
@@ -20,7 +20,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
 })
 export class IngredientDetailsPartial implements OnInit {
-  ingredient$: Observable<IIngredient>;
+  ingredient$: Observable<IIngredient | undefined>;
 
   @Output() onDelete: EventEmitter<void> = new EventEmitter();
 

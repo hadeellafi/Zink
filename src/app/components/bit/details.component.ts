@@ -35,8 +35,8 @@ export class BitDetailsComponent implements OnInit {
   @Input() id: string;
   bit$: Observable<IBit>;
   // TASK:04: trun this into behavior subject. Listen to changes to pass value to details.partial component
-  selectedIngredient$: BehaviorSubject<IIngredient> =
-    new BehaviorSubject<IIngredient>(null);
+  selectedIngredient$: BehaviorSubject<IIngredient | null> =
+    new BehaviorSubject<IIngredient | null>(null);
 
   constructor(
     private bitService: BitService,
@@ -51,7 +51,7 @@ export class BitDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.bit$ = this.bitService.GetBit(this.id).pipe(
       tap((res) => {
-        this.titleService.setTitle(res.name);
+        this.titleService.setTitle(<string>res.name);
       })
     );
     // TASK:04: tap into the returned result and update the page title via TitleService, using the name

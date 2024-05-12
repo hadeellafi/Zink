@@ -27,7 +27,7 @@ export class PieceDetailsComponent implements OnInit {
 
   // TASK:04: turn this into a behavior subject
 
-  selectedSegment$: BehaviorSubject<ISegment> = new BehaviorSubject<ISegment>(
+  selectedSegment$: BehaviorSubject<ISegment|null> = new BehaviorSubject<ISegment|null>(
     null
   );
 
@@ -43,7 +43,7 @@ export class PieceDetailsComponent implements OnInit {
       switchMap((piece) => this.pieceState.setState(piece)),
 
       // TASK:04: tap into the returned result and update the page title via TitleService, using the name
-      tap((piece) => this.titleService.setTitle(piece.name))
+      tap((piece) => this.titleService.setTitle(<string>piece.name))
     );
   }
 

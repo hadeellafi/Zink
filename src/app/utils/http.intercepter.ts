@@ -6,7 +6,7 @@ import {
 } from '@angular/common/http';
 import { catchError, map, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { successDebugOperator } from './debug';
+import { successOperator } from './debug';
 
 export const mapData = (res: any) => {
   // check for res.body and res.body.data
@@ -34,11 +34,9 @@ export const DomeInterceptorFn: HttpInterceptorFn = (
     // TASK:06: refactor out of the interceptor. Create a custom Rxjs operator
     // TASK:06: create a console wrapper, move this into Javascript, and declare via typings
 
-    successDebugOperator(req),
+    successOperator(req),
     catchError((err) => {
       // // when loggin an error via catchError, you need to rethrow, or return a new observable
-      // //   console.error('Dome error:', err);
-      // // this will log the error again.
       // // TASK:06 stop it from logging its own error using Angular ErrorHandler token
       return throwError(() => err);
     })

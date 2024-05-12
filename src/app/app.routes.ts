@@ -3,6 +3,7 @@ import {
   TitleStrategy,
   provideRouter,
   withComponentInputBinding,
+  withRouterConfig,
 } from '@angular/router';
 import { TitleService } from './utils/title.service';
 
@@ -36,7 +37,8 @@ export const AppRoutingProvider = [
   provideRouter(
     routes,
     // pass option to bind input to the route param
-    withComponentInputBinding()
+    withComponentInputBinding(),
+    withRouterConfig({ paramsInheritanceStrategy: 'always' })
   ),
   {
     provide: TitleStrategy,
